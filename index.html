@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for Someone Special ✨ | Happy Birthday Tannii</title>
+    <meta name="description" content="A special interactive birthday surprise experience for Tannii Partner.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-experience"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Entrance Experience (Sequential Screens) -->
+    <div id="introExperience">
+        <!-- Screen 1: Hook -->
+        <section id="screen1" class="screen active">
+            <h1 class="romantic-text">Open this…</h1>
+            <p class="subtext">but don’t blush okay? 👇</p>
+            <p class="subtext" style="font-size: 0.9rem; opacity: 0.8;">Heyy… 👀 Wait… don’t rush…</p>
+            <button class="btn-next" onclick="nextScreen(1)">
+                Tap to continue <span>👉</span>
+            </button>
+        </section>
+
+        <!-- Screen 2: Breathing Pause -->
+        <section id="screen2" class="screen">
+            <h1>Take a deep breath 😌</h1>
+            <div class="breathing-circle"></div>
+        </section>
+
+        <!-- Screen 3: Build Suspense -->
+        <section id="screen3" class="screen">
+            <h1 id="typingSuspense"></h1>
+            <div id="suspenseActions" style="opacity: 0; transition: 1s ease;">
+                <p class="romantic-text" style="font-size: 2.5rem; margin: 1rem 0;">Ready? 👇</p>
+                <button class="btn-next" onclick="startMainExperience()">
+                    Yes… show me <span>👉</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Main Experience (Scrollable Content) -->
+    <main id="mainContent">
+        <!-- Section 1: Reveal -->
+        <section id="revealSection" class="content-section">
+            <h1 class="romantic-text" style="font-size: 4rem; line-height: 1.1;">
+                Happyyyy Birthdayyyy<br>Tanniii Partnerrr 🥳💖
+            </h1>
+            <p class="subtext">Scroll down slowly for something more... ✨</p>
+        </section>
+
+        <!-- Section 2: Emotional Message Reveal (Step by step) -->
+        <section class="content-section reveal-step">
+            <div class="glass-card">
+                <p class="message-text">“I just wanted to remind you today…”</p>
+            </div>
+        </section>
+
+        <section class="content-section reveal-step">
+            <div class="glass-card">
+                <p class="message-text">“that you’re really special (yes, more than you think 😌)”</p>
+            </div>
+        </section>
+
+        <section class="content-section reveal-step">
+            <div class="glass-card">
+                <p class="message-text">“May your day be full of smiles, little surprises… ✨”</p>
+            </div>
+        </section>
+
+        <section class="content-section reveal-step">
+            <div class="glass-card">
+                <p class="message-text">“And all the happiness you secretly deserve 💫”</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Deep Emotional Line -->
+        <section class="content-section">
+            <div class="glass-card" style="border: 2px solid var(--primary-glow); background: rgba(255, 45, 117, 0.08);">
+                <p style="font-size: 1.3rem; line-height: 1.6;">
+                    “If you ever feel low… just remember—<br>
+                    <strong>someone out here is always wishing the best for you 😊</strong>”
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 4: Shayari -->
+        <section class="content-section">
+            <div class="moon-bg"></div>
+            <div class="glass-card" style="background: transparent; border: none; backdrop-filter: none;">
+                <p class="romantic-text" style="font-size: 2.2rem; line-height: 1.4; color: #fff;">
+                    “Rehne do zulfon ko apne chehre pe…<br>
+                    chaand badalon mai he accha lagta hai 🌙✨”
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 5: Reminder Checklist -->
+        <section class="content-section">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 1.5rem; text-decoration: underline; text-underline-offset: 8px; color: var(--primary);">
+                    Quick Reminder
+                </h2>
+                <ul class="checklist">
+                    <li><span class="check-cross">✕</span> No stress</li>
+                    <li><span class="check-cross">✕</span> No overthinking</li>
+                    <li><span class="check-tick">✓</span> Only happiness</li>
+                    <li><span class="check-tick">✓</span> Only smiles</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 6: Closing Screen -->
+        <section class="content-section">
+            <h1 class="romantic-text">Now go… enjoy your day,<br>Birthday Girl 🎂✨</h1>
+        </section>
+
+        <!-- Section 7: Tease Ending -->
+        <section class="content-section">
+            <div class="glass-card">
+                 <p style="margin-bottom: 2rem; font-size: 1.1rem; color: var(--text-sub);">
+                    PS: This is just a small surprise…<br>bigger one pending 😉🎁
+                </p>
+                <button class="btn-next btn-locked" disabled>
+                    <span>🔒</span> Unlock next surprise (11)
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Music Toggle -->
+    <div class="music-toggle" onclick="toggleMusic()" title="Play/Pause Romantic Vibes">
+        <span id="musicIcon">🎵</span>
+    </div>
+
+    <!-- Hidden Audio (Royalty free/Soft ambient placeholder) -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

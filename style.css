@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Great+Vibes&display=swap');
+
+:root {
+    --primary: #ff2d75;
+    --primary-glow: rgba(255, 45, 117, 0.5);
+    --secondary: #7b61ff;
+    --secondary-glow: rgba(123, 97, 255, 0.5);
+    --bg-dark: #0e0d12;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --text-main: #ffffff;
+    --text-sub: rgba(255, 255, 255, 0.7);
+    --font-main: 'Outfit', sans-serif;
+    --font-romantic: 'Great Vibes', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden; /* Prevent scroll until main reveal */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Background Gradients & Particles */
+.bg-experience {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 30%, var(--primary-glow) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--secondary-glow) 0%, transparent 40%),
+                var(--bg-dark);
+    transition: background 1.5s ease;
+    animation: bgPulse 15s ease infinite alternate;
+}
+
+@keyframes bgPulse {
+    0% { filter: hue-rotate(0deg) brightness(1); }
+    100% { filter: hue-rotate(15deg) brightness(1.2); }
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    z-index: 2000;
+    width: 0%;
+}
+
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Base Layout & Screens */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+    transform: translateY(20px);
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Buttons */
+.btn-next {
+    margin-top: 2rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-next:hover {
+    background: var(--primary);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px var(--primary-glow);
+    border-color: transparent;
+}
+
+.btn-next:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Typography styles */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.romantic-text {
+    font-family: var(--font-romantic);
+    font-size: 3.5rem;
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+p.subtext {
+    color: var(--text-sub);
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+}
+
+/* Animations */
+@keyframes breathing {
+    0%, 100% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 20px var(--primary-glow); }
+    50% { transform: scale(1.5); opacity: 0.8; box-shadow: 0 0 60px var(--primary-glow); }
+}
+
+.breathing-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: breathing 4s ease-in-out infinite;
+    margin-top: 3rem;
+}
+
+/* Main Content Styles (Scrollable) */
+#mainContent {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    scroll-behavior: smooth;
+    display: none; /* Initially hidden */
+}
+
+.content-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    margin: 2rem 0;
+}
+
+/* Checklist UI */
+.checklist {
+    list-style: none;
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.checklist li {
+    padding: 0.8rem 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.check-cross { color: #ff4d4d; font-weight: bold; }
+.check-tick { color: #4ade80; font-weight: bold; }
+
+/* Moon Background for Shayari */
+.moon-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('ethereal_romantic_moon_1775237196717.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+    mix-blend-mode: screen;
+}
+
+@keyframes floatMoon {
+    0%, 100% { transform: translate(-50%, -55%); }
+    50% { transform: translate(-50%, -45%); }
+}
+
+/* Locked Button */
+.btn-locked {
+    background: rgba(0,0,0,0.5);
+    border: 1px dashed var(--glass-border);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Music Toggle Overlay */
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: var(--primary);
+}
+
+.floating-heart {
+    position: absolute;
+    color: var(--primary);
+    pointer-events: none;
+    opacity: 0.6;
+    animation: floatHeart 10s linear infinite;
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) scale(1) rotate(360deg); opacity: 0; }
+}
+
+/* Mobile Responsive Refinements */
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .romantic-text { font-size: 2.2rem !important; }
+    #revealSection h1 { font-size: 2.5rem !important; }
+    .glass-card { padding: 1.5rem; }
+    .btn-next { padding: 1rem 1.8rem; font-size: 1rem; }
+}
